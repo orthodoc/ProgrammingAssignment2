@@ -1,11 +1,11 @@
-## cachematrix.R script consists of two functions makeCacheMatrix() function and
-## cacheSolve() function, that return the inverse of a matrix. makeCacheMatrix() 
-## function stores the matrix and its inverse in variables. cacheSolve() computes
+## cachematrix.R script consists of two functions makeCacheMatrix() and
+## cacheSolve(), that return the inverse of a matrix. makeCacheMatrix() 
+## stores the matrix and its inverse in variables. cacheSolve() computes
 ## the inverse of the matrix for the first time, and stores it in a variable. It
 ## outputs the inverse of the matrix from either the cached(stored) value if 
 ## available, or the computed value.
 
-## makeCacheMatrix() stores the matrix (set()) and its inverse (setinvers()). It
+## makeCacheMatrix() stores the matrix (set()) and its inverse (setinverse()). It
 ## defines functions to obtain the matrix(get()) and its inverse(getinverse()).
 
 makeCacheMatrix <- function(x = matrix()) {
@@ -31,10 +31,12 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   s <- x$getinverse()
+  ## Returns the cached value if available
   if(!is.null(s)) {
     message("getting cached data")
     return(s)
   }
+  ## Computes the inverse from the matrix when cached value is NULL
   else {
     data <- x$get()
     s <- solve(data, ...)
